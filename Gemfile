@@ -68,5 +68,8 @@ end
 
 gem "devise", "~> 4.9"
 
-gem "bootstrap-sass", "3.4.1"
 gem "sassc-rails"
+
+gem "font-awesome-sass", "~> 6.5"
+
+gem "bootstrap-sass", "~> 3.4"

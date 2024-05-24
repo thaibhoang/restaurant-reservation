@@ -13,8 +13,11 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
+@import "bootstrap";
+@import "navbar";
 * {
+  --color1: #da3743;
+  --color2: #4a6fde;
   box-sizing: border-box;
 }
 .section-title {
