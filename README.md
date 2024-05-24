@@ -1,24 +1,10 @@
-# README
+Restaurant Reservation System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Features:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  1 User accounts: Implement a system for users to sign up, log in, and manage their accounts.
+  2 Restaurant profiles: Allow restaurant owners to create and manage their restaurant profiles, including adding photos, menus, and hours of operation.
+  3 Table management: Implement a system for restaurant owners to manage their table availability and reservation times.
+  4 Reservation system: Allow users to search for available tables and make reservations directly through the platform.
+  5 Reviews and ratings: Implement a system for users to rate and review restaurants.
+  6 Notifications: Notify users of upcoming reservations and notify restaurant owners of new reservations.
