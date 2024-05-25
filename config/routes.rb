@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :businesses, only: :show
   root "static_pages#home"
   get "/home", to: "static_pages#home"
-  get "/business", to: "static_pages#business"
+  get "/for_business", to: "static_pages#for_business"
   get "/about_us", to: "static_pages#about_us"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

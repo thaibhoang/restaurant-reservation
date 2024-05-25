@@ -10,13 +10,13 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "Home | #{@base_title}"
     assert_select "a.active", text: "Home"
-    get business_path
+    get for_business_path
     assert_select "title", "Business | #{@base_title}"
     assert_select "a.active", text: "For Businesses"
   end
 
   test "should get to business page" do
-    get business_path
+    get for_business_path
     assert_response :success
     assert_select "title", "Business | #{@base_title}"
     assert_select "a.active", text: "For Businesses"

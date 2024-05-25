@@ -4,3 +4,9 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+<% 10.times do |n| %>
+user<%= n %>:
+  email: <%= "user#{n}@test" %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'fobaza') %>
+<% end %>

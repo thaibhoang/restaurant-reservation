@@ -4,3 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+test_business:
+  email: fobaza@gmail.com
+  encrypted_password: <%= Business.new.send(:password_digest, 'fobaza') %>
+
+<% 10.times do |n| %>
+business<%= n %>:
+  email: <%= "business#{n}@test" %>
+  encrypted_password: <%= Business.new.send(:password_digest, 'fobaza') %>
+<% end %>
