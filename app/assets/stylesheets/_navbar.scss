@@ -39,9 +39,9 @@
   color: black;
   font-weight: 800;
 }
-.nav-link:hover {
+.nav-link:hover, .nav-link.active {
   text-decoration: none;
-  color: var(--color1);
+  color: var(--color1) !important;
 }
 .nav-item{
   position: relative;
@@ -50,7 +50,7 @@
   padding-left: 1.5rem;
   width: 100%;
 }
-@media(min-width: 991px) {
+@media(min-width: 767px) {
   .nav-link::before {
     content: "";
     position: absolute;
@@ -64,7 +64,7 @@
     transition: 0.3s ease-in-out;
   }
 
-  .nav-link:hover::before {
+  .nav-link:hover::before, .nav-link.active::before {
     visibility: visible;
     width: 100%;
   }

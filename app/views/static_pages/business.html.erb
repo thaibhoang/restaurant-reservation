@@ -1,15 +1,18 @@
+<% provide(:title, "Business") %>
+
 <div class="hero-wrapper hero-wrapper__business">  
   <div class="hero_img hero_img__business"></div>
   <div class="hero_content_business">
     <div class="page-heading">Serving the best restaurants for 25 years and counting</div>
-    <div>
-      <%= link_to "Get started", "new_user_registration_path", class: "hero__button" %>
+    <div class="hero_buttons">
+      <%= link_to "Get started", new_business_registration_path, class: "hero__button" %>
+      <%= link_to "Business Login", new_business_session_path, class: "hero__button" %>
     </div>
   </div>
 </div>
 
-<div class="about_content pt-2 text_content col-md-8 col-md-offset-2">
-  <h1 class="section-title">
+<div class="mt-2 pt-2 text_content col-md-8 col-md-offset-2">
+  <h1 class="section_title_business">
     Welcome to the most complete, easiest-to-use, and truly reliable restaurant platform out there
   </h1>
   <br>
