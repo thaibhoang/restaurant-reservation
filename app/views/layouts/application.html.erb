@@ -13,6 +13,8 @@
 
   <body>
     <%= render "layouts/header" %>
+    <%= render "layouts/admin_nav" %>
+    <%= render "layouts/flash", flash: flash %>
     <main>
       <%= yield %>
     </main>

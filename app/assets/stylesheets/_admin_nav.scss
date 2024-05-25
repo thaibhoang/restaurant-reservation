@@ -1,0 +1,21 @@
+.admin_nav {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  border-bottom: 1px var(--color-gray) solid;
+}
+.admin_nav_link {
+  font-weight: bold;
+  color: var(--color-gray);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+.admin_nav_link:hover, .admin_nav_link.active {
+  color: var(--color1);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :businesses
-  devise_for :users
+  devise_for :users, path_prefix: 'devise'
+  devise_for :businesses, path_prefix: 'devise'
+  resources :businesses, only: :show
   root "static_pages#home"
   get "/home", to: "static_pages#home"
   get "/business", to: "static_pages#business"

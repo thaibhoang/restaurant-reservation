@@ -11,4 +11,8 @@ module ApplicationHelper
 
     "active"
   end
+
+  def admin_page?(admin_page = "")
+    admin_page == "admin"
+  end
 end

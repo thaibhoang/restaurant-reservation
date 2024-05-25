@@ -15,9 +15,12 @@
  */
 @import "bootstrap";
 @import "navbar";
+@import "admin_nav";
+
 * {
   --color1: #da3743;
   --color2: #4a6fde;
+  --color-gray:	#6f737b;
   box-sizing: border-box;
 }
 .section-title {
