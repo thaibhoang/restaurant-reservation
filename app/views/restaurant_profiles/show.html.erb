@@ -1,0 +1,10 @@
+<div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 normal-card normal-card--shadow">
+  <% provide(:admin_page, "admin") %>
+
+  <div>
+    <%= link_to "Edit this restaurant profile", edit_restaurant_profile_path(@restaurant_profile) %>
+  </div>
+  <br>
+
+  <%= render @restaurant_profile %>
+</div>

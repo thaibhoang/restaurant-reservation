@@ -1,0 +1,98 @@
+<%= form_with(model: restaurant_profile) do |form| %>
+  <% if restaurant_profile.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(restaurant_profile.errors.count, "error") %> prohibited this restaurant_profile from being saved:</h2>
+
+      <ul>
+        <% restaurant_profile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="alert-important">Fields marked with * are required</div>
+  <div>
+    <%= form.label "Name *", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label "Description *", style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label "Phone *", style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label "Address *", style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label "Hours of Operation *", style: "display: block" %>
+    <%= form.text_area :hours_of_operation %>
+  </div>
+
+  <div>
+    <%= form.label "Price *", style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label "Cuisine *", style: "display: block" %>
+    <%= form.text_field :cuisine %>
+  </div>
+
+  <div>
+    <%= form.label :dining_style, style: "display: block" %>
+    <%= form.text_field :dining_style %>
+  </div>
+
+  <div>
+    <%= form.label :dress_code, style: "display: block" %>
+    <%= form.text_field :dress_code %>
+  </div>
+
+  <div>
+    <%= form.label :parking_details, style: "display: block" %>
+    <%= form.text_field :parking_details %>
+  </div>
+
+  <div>
+    <%= form.label :payment_options, style: "display: block" %>
+    <%= form.text_field :payment_options %>
+  </div>
+
+  <div>
+    <%= form.label :executive_chef, style: "display: block" %>
+    <%= form.text_field :executive_chef %>
+  </div>
+
+  <div>
+    <%= form.label :website, style: "display: block" %>
+    <%= form.text_field :website %>
+  </div>
+
+  <div>
+    <%= form.label :catering, style: "display: block" %>
+    <%= form.text_area :catering %>
+  </div>
+
+  <div>
+    <%= form.label :private_party_facilities, style: "display: block" %>
+    <%= form.text_area :private_party_facilities %>
+  </div>
+
+  <div>
+    <%= form.label :additional, style: "display: block" %>
+    <%= form.text_area :additional %>
+  </div>
+
+  <div>
+    <%= form.submit "Save", class: "main-button" %>
+  </div>
+<% end %>

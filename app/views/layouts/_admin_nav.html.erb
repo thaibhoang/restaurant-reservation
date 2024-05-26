@@ -3,7 +3,7 @@
 <div class="admin_nav">
   <div class="nav-item"><%= link_to "Table", "#", class: "nav-link nav-link--gray" %></div>
   <div class="nav-item"><%= link_to "Menu", "#", class: "nav-link nav-link--gray" %></div>
-  <div class="nav-item"><%= link_to "Restaurant", "#", class: "nav-link nav-link--gray" %></div>
+  <div class="nav-item"><%= link_to "Restaurant", restaurant_nav_link, class: "nav-link nav-link--gray" %></div>
   <div class="nav-item">
     <%= link_to "Logout", destroy_business_session_path, data: { turbo_method: :delete }, class: "nav-link nav-link--gray" %>
   </div>
