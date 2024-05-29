@@ -1,0 +1,15 @@
+.menu_button {
+    padding: 1rem 1.5rem;
+    border: 0.25rem solid var(--color-gray-light);
+    transition: all 0.3s ease-in-out;
+}
+.menu_button:hover, .menu_button.active {
+    border: 0.25rem solid  var(--color1);
+    transition: all 0.3s ease-in-out;
+}
+.menus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    padding: 1.75rem 0;
+}

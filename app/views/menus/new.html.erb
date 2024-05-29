@@ -1,0 +1,6 @@
+<h1>New menu</h1>
+<%= turbo_frame_tag "menu_new" do %>
+  <div class="pb-3 border_bottom_gray">
+    <%= render "form", menu: @menu %>
+  </div>
+<% end %>

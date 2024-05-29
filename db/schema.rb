@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_26_032706) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_29_063943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_032706) do
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true
   end
 
+  create_table "menus", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.bigint "business_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_menus_on_business_id"
+  end
+
   create_table "restaurant_profiles", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -91,5 +100,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_032706) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "menus", "businesses"
   add_foreign_key "restaurant_profiles", "businesses"
 end

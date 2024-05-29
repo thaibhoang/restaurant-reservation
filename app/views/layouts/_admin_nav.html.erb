@@ -5,7 +5,7 @@
     <%= link_to "Table", "#", class: "nav-link nav-link--gray #{show_active(yield(:sub_title), "Table")}" %>
   </div>
   <div class="nav-item">
-    <%= link_to "Menu", "#", class: "nav-link nav-link--gray  #{show_active(yield(:sub_title), "Menu")}" %>
+    <%= link_to "Menu", menus_url, class: "nav-link nav-link--gray  #{show_active(yield(:sub_title), "Menu")}" %>
   </div>
   <div class="nav-item">
     <%= link_to "Restaurant", restaurant_nav_link, class: "nav-link nav-link--gray #{show_active(yield(:sub_title), "Restaurant")}" %>

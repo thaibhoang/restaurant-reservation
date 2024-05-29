@@ -1,0 +1,9 @@
+<%= turbo_stream.update("menu_infor") do %>
+  <div>
+    <%= @menu.description %>
+  </div>
+<% end %>
+
+<%= turbo_stream.replace("#{dom_id(@menu)}_button") do %>
+  <%= render partial: "menu_button", locals: { new_class: "active", menu: @menu } %>
+<% end %>

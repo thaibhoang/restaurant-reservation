@@ -1,0 +1,9 @@
+<%= turbo_stream.update("menu_new", "") %>
+
+<%= turbo_stream.append("menus") do %>
+  <%= render partial: "menu_button", locals: { new_class: "active", menu: @menu } %>
+<% end %>
+
+<%= turbo_stream.update("menu_content") do %>
+  <%= render "menu", menu: @menu %>
+<% end %>

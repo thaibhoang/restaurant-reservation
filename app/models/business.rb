@@ -5,4 +5,5 @@ class Business < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :restaurant_profile, dependent: :destroy
+  has_many :menus, dependent: :destroy
 end

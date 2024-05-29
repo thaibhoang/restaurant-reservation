@@ -17,12 +17,15 @@
 @import "navbar";
 @import "admin_nav";
 @import "form";
+@import "menu";
 
 * {
   --color1: #da3743;
   --color2: #4a6fde;
   --color-gray:	#6f737b;
+  --color-gray-light: #d8d9db;
   box-sizing: border-box;
+  text-decoration: none !important;
 }
 .section-title {
   font-size: 32px;
@@ -32,16 +35,22 @@
 }
 // card styling
 .normal-card {
+  padding: 1rem 1.5rem;
+}
+.normal-card--round {
   border-radius: 1rem;
-  padding: 1.5rem;
 }
 .normal-card--shadow {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 h1 {
   font-size: x-large;
+  margin: 1rem auto;
 }
 .main-content {
   margin: auto;
   width: Min(100%, 1000px);
+}
+.border_bottom_gray {
+  border-bottom: 0.0625rem solid var(--color-gray-light);
 }

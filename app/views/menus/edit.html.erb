@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "menu_infor" do %>
+  <%= render "form", menu: @menu %>
+
+  <br>
+
+  <div>
+    <%= link_to "Cancel", @menu %> |
+    <%= link_to "Remove menu", menu_url(@menu), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+<% end %>

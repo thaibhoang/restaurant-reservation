@@ -1,0 +1,6 @@
+<%= link_to menu.name, menu, class: "menu_button #{new_class if local_assigns[:new_class]}",
+                             id: "#{dom_id(menu)}_button",
+                             data: { turbo_frame: "menu_content",
+                                     toggle_target: "button",
+                                     action: "click->toggle#update"
+                                    } %>

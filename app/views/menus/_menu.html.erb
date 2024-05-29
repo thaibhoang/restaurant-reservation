@@ -1,0 +1,14 @@
+<div id="<%= dom_id menu %>" class="py-3 border_bottom_gray">
+  <div class="pb-3">
+    <%= link_to "Edit this menu", edit_menu_path(@menu), data: { turbo_frame: "menu_infor" } %>
+  </div>
+  
+  <%= turbo_frame_tag "menu_infor" do %>
+    <div>
+      <%= menu.description %>
+    </div>
+  <% end %>
+
+  <div>Some content will be add here later</div>
+
+</div>

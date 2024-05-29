@@ -15,4 +15,8 @@ module ApplicationHelper
   def admin_page?(admin_page = "")
     admin_page == "admin"
   end
+
+  def some_text_if_empty(resource)
+    content_tag(:div, "Empty for now") if resource.empty?
+  end
 end
