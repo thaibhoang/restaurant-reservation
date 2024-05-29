@@ -1,6 +1,7 @@
 class RestaurantProfilesController < ApplicationController
   before_action :authenticate_business!
   before_action :set_restaurant_profile, :owner_only, only: %i[show edit update]
+  before_action :one_restaurant_profile_per_business, only: :create
 
   def show
   end
@@ -53,6 +54,11 @@ class RestaurantProfilesController < ApplicationController
 
     flash[:notice] = "You can only see your own restaurant's admin page"
     redirect_to current_business
+  end
+
+  def one_restaurant_profile_per_business
+    flash.notice = "You can only have one restaurant profile"
+    redirect_to current_business.restaurant_profile if current_business.restaurant_profile.present?
   end
 
   # Only allow a list of trusted parameters through.

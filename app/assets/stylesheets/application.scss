@@ -34,11 +34,14 @@
 .normal-card {
   border-radius: 1rem;
   padding: 1.5rem;
-  margin-bottom: 1rem;
 }
 .normal-card--shadow {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 h1 {
   font-size: x-large;
+}
+.main-content {
+  margin: auto;
+  width: Min(100%, 1000px);
 }

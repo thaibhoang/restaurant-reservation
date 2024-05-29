@@ -1,7 +1,6 @@
-<div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 normal-card normal-card--shadow">
-  <% provide(:admin_page, "admin") %>
-  
+<%= render "shared/admin_content_container" do %>
+  <% provide(:sub_title, "Restaurant") %>
   <h1>New restaurant profile</h1>
   
   <%= render "form", restaurant_profile: @restaurant_profile %>
-</div>
+<% end %>
