@@ -75,3 +75,5 @@ gem "font-awesome-sass", "~> 6.5"
 gem "bootstrap-sass", "~> 3.4"
 
 gem "rails-controller-testing", "~> 1.0"
+
+gem "pry", "~> 0.14.2"
