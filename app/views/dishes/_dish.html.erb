@@ -1,0 +1,7 @@
+<div id="<%= dom_id dish %>" class="mb-3 pb-3 group_dish">
+  <%= turbo_frame_tag "#{dom_id(dish)}_infor" do %>
+    <%= render "dishes/dish_infor", dish: dish %>
+  <% end %>
+
+  <%= link_to "Edit this dish", edit_dish_path(dish, group_id: group.id), data: { turbo_frame: "#{dom_id(dish)}_infor" } %>
+</div>

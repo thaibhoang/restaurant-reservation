@@ -1,0 +1,11 @@
+<h1>Editing dish</h1>
+
+<%= turbo_frame_tag "#{dom_id(@dish)}_infor" do %>
+
+  <%= render "form", dish: @dish, group: @group %>
+
+  <%= link_to "Cancel", dish_path(@dish, group_id: @group.id) %> |
+  <%= link_to "Destroy this dish", dish_path(@dish, group_id: @group.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> |
+
+<% end %>
+

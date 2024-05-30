@@ -1,0 +1,9 @@
+<div id="<%= dom_id serve_size %>" class="d-flex justify-content-between serve_size px-2 py-1 my-2">
+  <div>
+    <strong> <%= serve_size.name %></strong>
+  </div>
+
+  <div>
+    <strong><%= number_to_currency(serve_size.price, :unit => "$") %></strong>
+  </div>
+</div>

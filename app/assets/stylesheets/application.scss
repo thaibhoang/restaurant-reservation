@@ -24,8 +24,12 @@
   --color2: #4a6fde;
   --color-gray:	#6f737b;
   --color-gray-light: #d8d9db;
+  --color-red-light: #e15b64;
   box-sizing: border-box;
   text-decoration: none !important;
+}
+.color_gray {
+  color: var(--color-gray);
 }
 .section-title {
   font-size: 32px;

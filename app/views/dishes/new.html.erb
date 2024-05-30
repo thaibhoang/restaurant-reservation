@@ -1,0 +1,7 @@
+<h1>New dish</h1>
+
+<%= turbo_frame_tag "dish_new" do %>
+  <div class="pb-3 border_bottom_gray">
+    <%= render "form", dish: @dish, group: @group %>
+  </div>
+<% end %>

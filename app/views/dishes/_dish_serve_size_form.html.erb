@@ -1,0 +1,13 @@
+<div class="nested-form-wrapper my-3 pb-3 border_bottom_gray" data-new-record="<%= f.object.new_record? %>">
+  <%= f.label :name, "Serve size:" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price, step: :any %>
+
+    <button type="button" data-action="click->nested-form#remove" class="main-button main-button--red">
+      Remove this serve size
+    </button>
+
+  <%= f.hidden_field :_destroy %>
+</div>

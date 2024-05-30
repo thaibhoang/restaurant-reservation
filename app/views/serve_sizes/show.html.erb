@@ -1,0 +1,9 @@
+
+<%= render @serve_size %>
+
+<div>
+  <%= link_to "Edit this serve size", edit_serve_size_path(@serve_size) %> |
+  <%= link_to "Back to serve sizes", serve_sizes_path %>
+
+  <%= button_to "Destroy this serve size", @serve_size, method: :delete %>
+</div>

@@ -1,0 +1,3 @@
+<%= turbo_stream.update("#{dom_id(@dish)}_infor") do %>
+  <%= render "dishes/dish_infor", dish: @dish %>
+<% end %>

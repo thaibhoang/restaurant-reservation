@@ -1,0 +1,53 @@
+<%= form_with(model: dish, data: { 
+  controller: 'nested-form',
+  nested_form_wrapper_selector_value: '.nested-form-wrapper' 
+}) do |form| %>
+  <% if dish.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
+
+      <ul>
+        <% dish.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag :group_id, group.id %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="color_gray">* If you only have one serve size, the price will be displayed along with the dish name</div>
+
+  <%# Fields for serve sizes %>
+  <template data-nested-form-target="template">
+    <%= form.fields_for :serve_sizes, ServeSize.new, child_index: 'NEW_RECORD' do |serve_size_fields| %>
+      <%= render "dishes/dish_serve_size_form", f: serve_size_fields %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :serve_sizes do |serve_size_fields| %>
+    <%= render "dishes/dish_serve_size_form", f: serve_size_fields %>
+  <% end %>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" data-action="nested-form#add" class="main-button main-button--blue">
+    + Add new serve size
+  </button>
+  <%# End of fields for serve sizes %>
+
+  <div>
+    <%= form.submit "Save", class: "main-button main-button--red" %>
+  </div>
+<% end %>

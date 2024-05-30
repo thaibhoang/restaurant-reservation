@@ -5,8 +5,19 @@
 
   <%= link_to "Edit this group", edit_group_path(group, menu_id: menu.id), data: { turbo_frame: "#{dom_id(group)}_infor" } %>
 
-  <p>
-    Space for display the dishes of group
-  </p>
+  <div class="my-3">
+    <div class="py-3 border_bottom_gray">
+      <div>
+        <%= link_to "+ Add a new dish to this group",
+              new_dish_path(group_id: group.id), data: { turbo_frame: "dish_new" } %>
+      </div>
+    </div>
+
+    <%= turbo_frame_tag "dish_new" %>
+
+    <div class="group_dishes mt-3" id="<%= dom_id(group) %>_dishes">
+      <%= render partial: "dishes/dish", collection: group.dishes, as: :dish, locals: { group: group } %>
+    </div>
+  </div>
 
 </div>

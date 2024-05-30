@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-between">
+  <div><strong><%= dish.name %></strong></div>
+  
+  <div><strong><%= number_to_currency(dish.serve_sizes.first.price, :unit => "$") if dish.has_one_serve_size? %></strong></div>
+</div>
+
+<p>
+  <%= dish.description %>
+</p>
+
+<%= render dish.serve_sizes if dish.has_many_serve_size? %>

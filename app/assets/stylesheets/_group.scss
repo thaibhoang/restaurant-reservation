@@ -1,0 +1,15 @@
+.group_dishes {
+  column-count: 1;
+  column-gap: 3rem;
+  column-fill: balance;
+}
+
+@media(min-width: 768px) {
+  .group_dishes {
+    column-count: 2;
+  }
+}
+
+.group_dish {
+  break-inside: avoid;
+}

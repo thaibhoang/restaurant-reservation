@@ -1,4 +1,4 @@
-input[type="text"], textarea {
+input[type="text"], textarea, input[type="number"] {
   display: block;
   width: 100%;
   margin-bottom: 0.5rem;
@@ -7,14 +7,13 @@ input[type="text"], textarea {
   border: 2px solid var(--color-gray);
   outline: none;
 }
-input[type="text"]:focus, textarea:focus {
+input[type="text"]:focus, textarea:focus, input[type="number"]:focus {
   border: 2px solid var(--color1);
 }
 label {
   padding-top: 1rem;
 }
 .main-button {
-  background-color: var(--color1);
   color: white;
   padding: 0.5rem 1.5rem;
   margin: 1rem auto;
@@ -22,8 +21,17 @@ label {
   outline: none;
   border: none;
   font-weight: bold;
-  opacity: 0.95;
+  opacity: 0.9;
   transition: all 0.3 ease-in-out;
+}
+.main-button--red {
+  background-color: var(--color1);
+}
+.main-button--blue {
+  background-color: var(--color2);
+}
+.main-button--red-light {
+  background-color: var(--color-red-light);
 }
 .main-button:hover {
   opacity: 1;

@@ -1,0 +1,13 @@
+
+<h1>Serve sizes</h1>
+
+<div id="serve_sizes">
+  <% @serve_sizes.each do |serve_size| %>
+    <%= render serve_size %>
+    <p>
+      <%= link_to "Show this serve size", serve_size %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New serve size", new_serve_size_path %>
