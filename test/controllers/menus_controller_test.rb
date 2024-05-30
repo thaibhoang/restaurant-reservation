@@ -2,6 +2,8 @@ require "test_helper"
 
 class MenusControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @business = businesses(:test_business)
+    sign_in @business
     @menu = menus(:one)
   end
 

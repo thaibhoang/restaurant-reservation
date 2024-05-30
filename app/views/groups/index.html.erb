@@ -4,7 +4,7 @@
 
 <div id="groups">
   <% @groups.each do |group| %>
-    <%= render group, menu_id: @menu.id %>
+    <%= render group, menu: @menu %>
     <p>
       <%= link_to "Show this group", group %>
     </p>
