@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["button"]
   static classes = ["change"]
   connect() {
-    console.log(this.changeClass);
+    document.addEventListener('turbo:before-stream-render', this.handleTurboStream.bind(this));
   }
 
   update(event) {
@@ -14,9 +14,19 @@ export default class extends Controller {
   }
 
   resetAll() {
-    console.log(this.buttonTargets);
     this.buttonTargets.forEach(button => {
       button.classList.remove(this.changeClass);
     });
+  }
+
+  handleTurboStream(event) {
+    if(this.createMenu(event)) {
+      this.resetAll();
+    }
+  }
+
+  createMenu(event) {
+    if(event.detail.newStream.action == "append" && event.detail.newStream.target == "menus") return true
+    return false
   }
 }

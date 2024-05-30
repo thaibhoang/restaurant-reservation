@@ -1,0 +1,3 @@
+<%= turbo_stream.update("#{dom_id(@group)}_infor") do %>
+  <%= render "groups/group_infor", group: @group %>
+<% end %>

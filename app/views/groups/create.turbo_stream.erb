@@ -1,0 +1,5 @@
+<%= turbo_stream.update("group_new", "") %>
+
+<%= turbo_stream.append("#{ dom_id(@menu) }_groups") do %>
+  <%= render "group", group: @group, menu: @menu %>
+<% end %>

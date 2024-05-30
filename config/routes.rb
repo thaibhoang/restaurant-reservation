@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :groups
   resources :menus
   resources :restaurant_profiles, except: %i[index destroy]
   devise_for :users, path_prefix: 'devise'

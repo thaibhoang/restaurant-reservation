@@ -1,0 +1,12 @@
+<div id="<%= dom_id group %>" class="my-3 pb-3 border_bottom_gray">
+  <%= turbo_frame_tag "#{dom_id(group)}_infor" do %>
+    <%= render "groups/group_infor", group: group %>
+  <% end %>
+
+  <%= link_to "Edit this group", edit_group_path(group, menu_id: menu.id), data: { turbo_frame: "#{dom_id(group)}_infor" } %>
+
+  <p>
+    Space for display the dishes of group
+  </p>
+
+</div>
