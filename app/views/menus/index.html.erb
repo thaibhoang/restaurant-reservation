@@ -4,7 +4,7 @@
 
     <div class="py-3 border_bottom_gray">
       <h1>Menus</h1>
-      <div><%= link_to "+ Add a new menu", new_menu_path, data: { turbo_frame: "menu_new" } %> </div>
+      <div><%= link_to "+ Add menu", new_menu_path, data: { turbo_frame: "menu_new" }, class: "main-button main-button--red" %> </div>
     </div>
 
     <%= turbo_frame_tag "menu_new" %>
