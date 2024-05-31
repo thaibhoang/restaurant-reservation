@@ -1,20 +1,20 @@
 <div id="<%= dom_id group %>" class="my-3 pb-3 border_bottom_gray">
-  <%= turbo_frame_tag "#{dom_id(group)}_infor" do %>
-    <%= render "groups/group_infor", group: group %>
-  <% end %>
-
-  <%= link_to "Edit this group", edit_group_path(group, menu_id: menu.id), data: { turbo_frame: "#{dom_id(group)}_infor" } %>
+  <div class="border_bottom_gray pb-3">
+    <%= turbo_frame_tag "#{dom_id(group)}_infor" do %>
+      <%= render "groups/group_infor", group: group %>
+    <% end %>
+    <%= link_to "Edit this group", edit_group_path(group, menu_id: menu.id), data: { turbo_frame: "#{dom_id(group)}_infor" } %>
+  </div>
 
   <div class="my-3">
-    <div class="py-3 border_bottom_gray">
+    <div class="py-3">
       <div>
         <%= link_to "+ Add dish",
-              new_dish_path(group_id: group.id), data: { turbo_frame: "dish_new" },
+              new_dish_path(group_id: group.id), data: { turbo_frame: "#{dom_id(group)}_dish_new" },
               class: "main-button main-button--red" %>
       </div>
+      <%= turbo_frame_tag "#{dom_id(group)}_dish_new" %>
     </div>
-
-    <%= turbo_frame_tag "dish_new" %>
 
     <div class="group_dishes mt-3" id="<%= dom_id(group) %>_dishes">
       <%= render partial: "dishes/dish", collection: group.dishes, as: :dish, locals: { group: group } %>
