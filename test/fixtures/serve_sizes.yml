@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Adult size
   price: 9.99
   dish: one
 
 two:
-  name: MyString
-  price: 9.99
+  name: Children size
+  price: 4.99
   dish: two

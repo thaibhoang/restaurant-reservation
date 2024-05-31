@@ -2,7 +2,7 @@
 
 <div id="dishes">
   <% @dishes.each do |dish| %>
-    <%= render dish %>
+    <%= render dish, group: @group %>
     <p>
       <%= link_to "Show this dish", dish %>
     </p>
