@@ -1,0 +1,19 @@
+<div id="<%= dom_id table %>">
+  <p>
+    <strong>Number:</strong>
+    <%= table.number %>
+  </p>
+
+  <p>
+    <strong>Seats:</strong>
+    <%= table.seats %>
+  </p>
+
+  <% unless table.seating_option.nil? %>
+    <p>
+      <strong>Seating option:</strong>
+      <%= table.seating_option.name %>
+    </p>
+  <% end %>
+
+</div>

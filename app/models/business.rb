@@ -6,4 +6,7 @@ class Business < ApplicationRecord
 
   has_one :restaurant_profile, dependent: :destroy
   has_many :menus, dependent: :destroy
+  has_many :seating_options, dependent: :destroy
+  has_many :tables, dependent: :destroy
+
 end

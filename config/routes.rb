@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tables
+  resources :seating_options
   resources :dishes
   resources :groups
   resources :menus

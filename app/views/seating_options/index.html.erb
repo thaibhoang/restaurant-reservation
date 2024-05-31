@@ -1,0 +1,16 @@
+<% provide(:sub_title, "Tables") %>
+<%= render "shared/admin_content_container" do %>
+
+  <h1>Seating options</h1>
+
+  <div id="seating_options">
+    <% @seating_options.each do |seating_option| %>
+      <%= render seating_option %>
+      <p>
+        <%= link_to "Show this seating option", seating_option %>
+      </p>
+    <% end %>
+  </div>
+
+  <%= link_to "New seating option", new_seating_option_path %>
+<% end %>

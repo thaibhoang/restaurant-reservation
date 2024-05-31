@@ -1,0 +1,8 @@
+<%= render @seating_option %>
+
+<div>
+  <%= link_to "Edit this seating option", edit_seating_option_path(@seating_option) %> |
+  <%= link_to "Back to seating options", seating_options_path %>
+
+  <%= button_to "Destroy this seating option", @seating_option, method: :delete %>
+</div>

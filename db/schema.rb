@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_30_093929) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_31_145522) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,6 +103,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_093929) do
     t.index ["business_id"], name: "index_restaurant_profiles_on_business_id"
   end
 
+  create_table "seating_options", force: :cascade do |t|
+    t.string "name"
+    t.bigint "business_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id", "name"], name: "index_seating_options_on_business_id_and_name", unique: true
+    t.index ["business_id"], name: "index_seating_options_on_business_id"
+  end
+
   create_table "serve_sizes", force: :cascade do |t|
     t.string "name"
     t.decimal "price", precision: 7, scale: 2
@@ -110,6 +119,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_093929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dish_id"], name: "index_serve_sizes_on_dish_id"
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.integer "number", null: false
+    t.integer "seats", null: false
+    t.bigint "business_id", null: false
+    t.bigint "seating_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_tables_on_business_id"
+    t.index ["number", "business_id"], name: "index_tables_on_number_and_business_id", unique: true
+    t.index ["seating_option_id"], name: "index_tables_on_seating_option_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -130,5 +151,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_093929) do
   add_foreign_key "groups", "menus"
   add_foreign_key "menus", "businesses"
   add_foreign_key "restaurant_profiles", "businesses"
+  add_foreign_key "seating_options", "businesses"
   add_foreign_key "serve_sizes", "dishes"
+  add_foreign_key "tables", "businesses"
+  add_foreign_key "tables", "seating_options"
 end
