@@ -4,7 +4,7 @@
   
     <%= turbo_frame_tag "menu_infor" do %>
       <div class="pt-3">
-        <%= menu.name %>
+        <strong><%= menu.name %></strong>
       </div>
       <div class="pt-3">
         Description: <%= menu.description %>
@@ -16,8 +16,7 @@
   <div class="my-3">
     <div class="py-3 border_bottom_gray">
       <div>
-        <%= link_to "+ Add a new group of dishes for this menu", 
-              new_group_path(menu_id: @menu.id), data: { turbo_frame: "group_new" } %>
+        <%= link_to "+ Add group", new_group_path(menu_id: @menu.id), data: { turbo_frame: "group_new" }, class: "main-button main-button--red" %>
       </div>
     </div>
 

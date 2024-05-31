@@ -49,5 +49,6 @@
 
   <div>
     <%= form.submit "Save", class: "main-button main-button--red" %>
+    <%= link_to "Cancel", new_dish_url(message: "cancel", group_id: group.id), class: "mx-3" unless dish.persisted? %>
   </div>
 <% end %>

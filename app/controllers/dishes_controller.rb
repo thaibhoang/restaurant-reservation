@@ -13,6 +13,10 @@ class DishesController < ApplicationController
 
   # GET /dishes/new
   def new
+    if params[:message] == "cancel"
+      render partial: "dishes/cancel_form"
+      return
+    end
     @dish = Dish.new
     @dish.serve_sizes.build
   end

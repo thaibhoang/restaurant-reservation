@@ -13,6 +13,10 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    if params[:message] == "cancel"
+      render partial: "groups/cancel_form"
+      return
+    end
     @group = Group.new
   end
 

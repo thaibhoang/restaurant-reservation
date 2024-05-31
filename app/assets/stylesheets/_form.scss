@@ -14,6 +14,7 @@ label {
   padding-top: 1rem;
 }
 .main-button {
+  line-height: 20px;
   color: white;
   padding: 0.5rem 1.5rem;
   margin: 1rem auto;
@@ -33,7 +34,8 @@ label {
 .main-button--red-light {
   background-color: var(--color-red-light);
 }
-.main-button:hover {
+.main-button:hover, .main-button:focus {
   opacity: 1;
   transition: all 0.3 ease-in-out;
+  color: white;
 }

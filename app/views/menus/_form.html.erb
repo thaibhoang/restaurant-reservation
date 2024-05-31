@@ -23,5 +23,6 @@
 
   <div>
     <%= form.submit "Save", class: "main-button main-button--red" %>
+    <%= link_to "Cancel", new_menu_url(message: "cancel"), class: "mx-3" unless menu.persisted? %>
   </div>
 <% end %>

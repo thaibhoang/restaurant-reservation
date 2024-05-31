@@ -20,5 +20,6 @@
 
   <div>
     <%= form.submit "Save", class: "main-button main-button--red" %>
+    <%= link_to "Cancel", new_group_url(message: "cancel", menu_id: menu.id), class: "mx-3" unless group.persisted? %>
   </div>
 <% end %>

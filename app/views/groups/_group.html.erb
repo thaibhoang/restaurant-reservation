@@ -8,8 +8,9 @@
   <div class="my-3">
     <div class="py-3 border_bottom_gray">
       <div>
-        <%= link_to "+ Add a new dish to this group",
-              new_dish_path(group_id: group.id), data: { turbo_frame: "dish_new" } %>
+        <%= link_to "+ Add dish",
+              new_dish_path(group_id: group.id), data: { turbo_frame: "dish_new" },
+              class: "main-button main-button--red" %>
       </div>
     </div>
 

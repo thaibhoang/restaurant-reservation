@@ -14,6 +14,10 @@ class MenusController < ApplicationController
 
   # GET /menus/new
   def new
+    if params[:message] == "cancel"
+      render partial: "menus/cancel_form"
+      return
+    end
     @menu = Menu.new
   end
 
