@@ -1,4 +1,4 @@
-<div id="<%= dom_id dish %>" class="mb-3 pb-3 group_dish">
+<div id="<%= dom_id dish %>" class="mb-3 pb-3 group_dish border_bottom_gray">
   <%= turbo_frame_tag "#{dom_id(dish)}_infor" do %>
     <%= render "dishes/dish_infor", dish: dish %>
   <% end %>
