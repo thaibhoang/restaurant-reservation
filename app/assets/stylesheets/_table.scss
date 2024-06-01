@@ -1,0 +1,15 @@
+.res_table {
+  text-align: center;
+}
+.res_table[data-table-size="small"] {
+  width: 50px;
+}
+.res_table[data-table-size="medium"] {
+  width: 75px;
+}
+.res_table[data-table-size="large"] {
+  width: 100px;
+}
+.res_table[data-table-size="xlarge"] {
+  width: 125px;
+}

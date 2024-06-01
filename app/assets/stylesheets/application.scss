@@ -51,6 +51,9 @@ h1 {
   font-size: x-large;
   margin: 1rem auto;
 }
+h2, .h2 {
+  font-size: large !important;
+}
 .main-content {
   margin: auto;
   width: Min(100%, 1000px);

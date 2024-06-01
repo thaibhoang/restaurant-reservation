@@ -13,12 +13,13 @@
 
   <div>
     <%= form.label :number, style: "display: block" %>
-    <%= form.number_field :number, placeholder: "The number of the table" %>
+    <%= form.number_field :number, placeholder: "Type a number (not been used before)" %>
+    <span class="color_gray">* If you don't care about the number, use the Add table in bulk, we will choose an unused number for you</span>
   </div>
 
   <div>
     <%= form.label :seats, style: "display: block" %>
-    <%= form.number_field :seats, placeholder: "The number of seats" %>
+    <%= form.number_field :seats, placeholder: "The number of seats this table has" %>
   </div>
 
   <div>

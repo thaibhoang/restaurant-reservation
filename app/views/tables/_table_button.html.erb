@@ -1,6 +1,7 @@
-<%= link_to table.number, table, class: "button_flex #{new_class if local_assigns[:new_class]}",
+<%= link_to table.number, table, class: "res_table button_flex #{new_class if local_assigns[:new_class]}",
                              id: "#{dom_id(table)}_button",
                              data: { turbo_frame: "#{dom_id(seating_option)}_table_content",
                                      toggle_target: "button",
-                                     action: "click->toggle#update"
+                                     action: "click->toggle#update",
+                                     table_size: table_size(table.seats)
                                     } %>
