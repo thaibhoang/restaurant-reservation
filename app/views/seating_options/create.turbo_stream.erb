@@ -1,0 +1,5 @@
+<%= turbo_stream.update("seating_option_new", "") %>
+
+<%= turbo_stream.append("seating_options") do %>
+  <%= render "seating_option", seating_option: @seating_option %>
+<% end %>

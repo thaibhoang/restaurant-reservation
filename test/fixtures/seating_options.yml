@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  business: one
+  business: test_business
 
 two:
   name: MyString
-  business: two
+  business: business1

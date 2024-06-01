@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_31_145522) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_01_093045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,6 +108,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_145522) do
     t.bigint "business_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "indestructible", default: false
     t.index ["business_id", "name"], name: "index_seating_options_on_business_id_and_name", unique: true
     t.index ["business_id"], name: "index_seating_options_on_business_id"
   end
@@ -125,7 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_145522) do
     t.integer "number", null: false
     t.integer "seats", null: false
     t.bigint "business_id", null: false
-    t.bigint "seating_option_id"
+    t.bigint "seating_option_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_tables_on_business_id"

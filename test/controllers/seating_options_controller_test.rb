@@ -2,6 +2,8 @@ require "test_helper"
 
 class SeatingOptionsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @business = businesses(:test_business)
+    sign_in @business
     @seating_option = seating_options(:one)
   end
 
@@ -17,7 +19,7 @@ class SeatingOptionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create seating_option" do
     assert_difference("SeatingOption.count") do
-      post seating_options_url, params: { seating_option: { business_id: @seating_option.business_id, name: @seating_option.name } }
+      post seating_options_url, params: { seating_option: { business_id: @seating_option.business_id, name: "new name" } }
     end
 
     assert_redirected_to seating_option_url(SeatingOption.last)

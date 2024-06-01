@@ -9,4 +9,12 @@ class Business < ApplicationRecord
   has_many :seating_options, dependent: :destroy
   has_many :tables, dependent: :destroy
 
+  after_create :create_default_seating_option
+
+  private
+
+  def create_default_seating_option
+    seating_options.create(name: 'Default', indestructible: true)
+  end
+
 end

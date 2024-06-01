@@ -4,7 +4,7 @@ class SeatingOptionsController < ApplicationController
 
   # GET /seating_options or /seating_options.json
   def index
-    @seating_options = current_business.seating_options
+    @seating_options = current_business.seating_options.includes(:tables).order(:id)
   end
 
   # GET /seating_options/1 or /seating_options/1.json
@@ -13,6 +13,10 @@ class SeatingOptionsController < ApplicationController
 
   # GET /seating_options/new
   def new
+    if params[:message] == "cancel"
+      render partial: "seating_options/cancel_form"
+      return
+    end
     @seating_option = SeatingOption.new
   end
 
@@ -27,6 +31,7 @@ class SeatingOptionsController < ApplicationController
     respond_to do |format|
       if @seating_option.save
         format.html { redirect_to seating_option_url(@seating_option), notice: "Seating option was successfully created." }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -38,6 +43,7 @@ class SeatingOptionsController < ApplicationController
     respond_to do |format|
       if @seating_option.update(seating_option_params)
         format.html { redirect_to seating_option_url(@seating_option), notice: "Seating option was successfully updated." }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -46,11 +52,16 @@ class SeatingOptionsController < ApplicationController
 
   # DELETE /seating_options/1 or /seating_options/1.json
   def destroy
-    @seating_option.destroy!
-
+    if @seating_option.indestructible?
+      redirect_to seating_options_url
+      return
+    end
+    @seating_option.destroy
     respond_to do |format|
       format.html { redirect_to seating_options_url, notice: "Seating option was successfully destroyed." }
+      format.turbo_stream
     end
+
   end
 
   private

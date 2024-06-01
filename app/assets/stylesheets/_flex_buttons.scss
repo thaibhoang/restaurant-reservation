@@ -1,13 +1,13 @@
-.menu_button {
+.button_flex {
     padding: 1rem 1.5rem;
     border: 0.25rem solid var(--color-gray-light);
     transition: all 0.3s ease-in-out;
 }
-.menu_button:hover, .menu_button.active {
+.button_flex:hover, .button_flex.active {
     border: 0.25rem solid  var(--color1);
     transition: all 0.3s ease-in-out;
 }
-.menus {
+.button_flex_container {
     display: flex;
     flex-wrap: wrap;
     gap: 1.75rem;

@@ -1,0 +1,21 @@
+<% if @old_seating_option == @seating_option %>
+  <%= turbo_stream.update "#{dom_id(@table)}_infor" do %>
+    <%= render "tables/table_infor", table: @table %>
+  <% end %>
+
+  <%= turbo_stream.replace("#{dom_id(@table)}_button") do %>
+    <%= render partial: "table_button", locals: { new_class: "active", table: @table, seating_option: @seating_option } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "#{dom_id(@old_seating_option)}_table_content", "" %>
+
+  <%= turbo_stream.remove("#{dom_id(@table)}_button") %>
+
+  <%= turbo_stream.append("#{dom_id(@seating_option)}_tables") do %>
+    <%= render partial: "table_button", locals: { new_class: "active", table: @table, seating_option: @seating_option } %>
+  <% end %>
+
+  <%= turbo_stream.update("#{dom_id(@seating_option)}_table_content") do %>
+    <%= render "table", table: @table %>
+  <% end %>
+<% end %>

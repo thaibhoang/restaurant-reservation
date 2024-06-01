@@ -1,0 +1,9 @@
+<%= turbo_stream.update("table_new", "") %>
+
+<%= turbo_stream.append("#{dom_id(@seating_option)}_tables") do %>
+  <%= render partial: "table_button", locals: { new_class: "active", table: @table, seating_option: @seating_option } %>
+<% end %>
+
+<%= turbo_stream.update("#{dom_id(@seating_option)}_table_content") do %>
+  <%= render "table", table: @table %>
+<% end %>

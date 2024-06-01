@@ -1,6 +1,16 @@
-<div id="<%= dom_id seating_option %>">
-  <p>
-    <strong>Name:</strong>
-    <%= seating_option.name %>
-  </p>
+<div id="<%= dom_id seating_option %>" class="my-3 border_bottom_red_big" data-controller="toggle" data-toggle-change-class="active">
+
+  <div class="pb-3 border_bottom_gray">
+    <%= turbo_frame_tag "#{dom_id(seating_option)}_infor" do %>
+      <%= render "seating_options/seating_option_infor", seating_option: seating_option %>
+    <% end %>
+    <%= link_to "Edit", edit_seating_option_path(seating_option), data: { turbo_frame: "#{dom_id(seating_option)}_infor" } %>
+  </div>
+
+  <div id="<%= dom_id(seating_option) %>_tables" class="button_flex_container" data-toggle-target="collection">
+    <%= render partial: "tables/table_button", collection: seating_option.tables, as: :table, locals: { seating_option: seating_option } %>
+  </div>
+
+  <%= turbo_frame_tag "#{dom_id(seating_option)}_table_content" %>
+
 </div>

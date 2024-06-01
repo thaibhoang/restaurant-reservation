@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tables
+  resources :tables do
+    collection do
+      post :bulk_create
+    end
+  end
   resources :seating_options
   resources :dishes
   resources :groups

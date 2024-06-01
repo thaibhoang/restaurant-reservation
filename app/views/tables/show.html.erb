@@ -1,9 +1,9 @@
-
-<%= render @table %>
+<%= turbo_frame_tag "#{dom_id(@table.seating_option)}_table_content" do %>
+  <%= render @table %>
+<% end %>
 
 <div>
   <%= link_to "Edit this table", edit_table_path(@table) %> |
-  <%= link_to "Back to tables", tables_path %>
-
   <%= button_to "Destroy this table", @table, method: :delete %>
+  <%= link_to "Back to tables", tables_path %>
 </div>

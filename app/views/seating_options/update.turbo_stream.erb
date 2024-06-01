@@ -1,0 +1,3 @@
+<%= turbo_stream.update("#{dom_id(@seating_option)}_infor") do %>
+  <%= render "seating_options/seating_option_infor", seating_option: @seating_option %>
+<% end %>

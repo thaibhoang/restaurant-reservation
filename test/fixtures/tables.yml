@@ -3,11 +3,11 @@
 one:
   number: 1
   seats: 1
-  seating_option: 1
-  business: one
+  seating_option: one
+  business: test_business
 
 two:
   number: 1
   seats: 1
-  seating_option: 1
-  business: two
+  seating_option: two
+  business: business1

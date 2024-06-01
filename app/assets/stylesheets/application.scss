@@ -17,7 +17,7 @@
 @import "navbar";
 @import "admin_nav";
 @import "form";
-@import "menu";
+@import "flex_buttons";
 
 * {
   --color1: #da3743;
@@ -57,4 +57,10 @@ h1 {
 }
 .border_bottom_gray {
   border-bottom: 0.0625rem solid var(--color-gray-light);
+}
+.border_bottom_red_big {
+  border-bottom: 0.25rem solid var(--color1);
+}
+.border_top_gray {
+  border-top: 0.0625rem solid var(--color-gray-light);
 }

@@ -1,10 +1,13 @@
 <h1>Editing seating option</h1>
 
-<%= render "form", seating_option: @seating_option %>
+<%= turbo_frame_tag "#{dom_id(@seating_option)}_infor" do %>
+  <%= render "form", seating_option: @seating_option %>
+  <%= link_to "Cancel", seating_option_path(@seating_option) %> |
+  <%= link_to "Destroy this seating option", seating_option_path(@seating_option), data: { turbo_method: :delete, turbo_confirm: "This will REMOVE ALL TABLE with this seating option. Are you sure?" } %> | 
+<% end %>
 
 <br>
 
 <div>
-  <%= link_to "Show this seating option", @seating_option %> |
   <%= link_to "Back to seating options", seating_options_path %>
 </div>

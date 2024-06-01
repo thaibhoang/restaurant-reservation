@@ -1,16 +1,20 @@
 <% provide(:sub_title, "Tables") %>
 <%= render "shared/admin_content_container" do %>
 
-  <h1>Seating options</h1>
+  <div class="border_bottom_red_big py-3">
+    <%= link_to "+ Add table", new_table_path, data: { turbo_frame: "table_new" }, class: "main-button main-button--red" %>
+    <%= link_to "+ Add tables in bulk", new_table_path(bulk: true), data: { turbo_frame: "table_new" }, class: "main-button main-button--red" %>
 
-  <div id="seating_options">
-    <% @seating_options.each do |seating_option| %>
-      <%= render seating_option %>
-      <p>
-        <%= link_to "Show this seating option", seating_option %>
-      </p>
-    <% end %>
+    <%= turbo_frame_tag "table_new" %>
   </div>
 
-  <%= link_to "New seating option", new_seating_option_path %>
+  <div id="seating_options">
+    <%= render partial: "seating_options/seating_option", collection: @seating_options, as: :seating_option %>
+  </div>
+  
+  <div class="border_bottom_gray py-3">
+    <%= link_to "+ Add seating option", new_seating_option_path, data: { turbo_frame: "seating_option_new" }, class: "main-button main-button--red" %>
+    <%= turbo_frame_tag "seating_option_new" %>
+  </div>
 <% end %>
+

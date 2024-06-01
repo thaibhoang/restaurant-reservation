@@ -9,7 +9,7 @@
 
     <%= turbo_frame_tag "menu_new" %>
 
-    <div id="menus" class="border_bottom_gray menus">
+    <div id="menus" class="border_bottom_gray button_flex_container" data-toggle-target="collection">
       <%= render partial: "menu_button", collection: @menus, as: :menu %>
     </div>
 

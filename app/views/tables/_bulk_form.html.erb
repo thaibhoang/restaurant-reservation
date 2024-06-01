@@ -1,0 +1,40 @@
+<%= turbo_frame_tag "table_new" do %>
+  <%= form_with(model: table, url: bulk_create_tables_path, method: :post, data: { turbo: "false" }) do |form| %>
+    <% if table.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(table.errors.count, "error") %> prohibited this table from being saved:</h2>
+
+        <ul>
+          <% table.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :number_of_tables, style: "display: block" %>
+      <%= form.number_field :number_of_tables, placeholder: "The number of tables you want to create in bulk" %>
+    </div>
+
+    <div>
+      <%= form.label :starting_number, style: "display: block" %>
+      <%= form.number_field :starting_number, placeholder: "Starting number for tables, we find available for you" %>
+    </div>
+
+    <div>
+      <%= form.label :seats, style: "display: block" %>
+      <%= form.number_field :seats, placeholder: "Number of seats per table" %>
+    </div>
+
+    <div>
+      <%= form.label :seating_option_id, style: "display: block" %>
+      <%= form.collection_select :seating_option_id, current_business.seating_options, :id, :name %>
+    </div>
+
+    <div>
+      <%= form.submit "Save", class: "main-button main-button--red" %>
+      <%= link_to "Cancel", new_table_url(message: "cancel"), class: "mx-3" unless table.persisted? %>
+    </div>
+  <% end %>
+<% end %>

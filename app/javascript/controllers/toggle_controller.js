@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="toggle"
 export default class extends Controller {
-  static targets = ["button"]
+  static targets = ["button", "collection"]
   static classes = ["change"]
   connect() {
     document.addEventListener('turbo:before-stream-render', this.handleTurboStream.bind(this));
@@ -20,13 +20,13 @@ export default class extends Controller {
   }
 
   handleTurboStream(event) {
-    if(this.createMenu(event)) {
+    if(this.createButton(event)) {
       this.resetAll();
     }
   }
 
-  createMenu(event) {
-    if(event.detail.newStream.action == "append" && event.detail.newStream.target == "menus") return true
+  createButton(event) {
+    if(event.detail.newStream.action == "append" && event.detail.newStream.target == this.collectionTarget.id) return true
     return false
   }
 }

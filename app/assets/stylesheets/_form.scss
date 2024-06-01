@@ -1,4 +1,4 @@
-input[type="text"], textarea, input[type="number"] {
+input[type="text"], textarea, input[type="number"], select {
   display: block;
   width: 100%;
   margin-bottom: 0.5rem;
@@ -6,8 +6,9 @@ input[type="text"], textarea, input[type="number"] {
   padding: 1rem;
   border: 2px solid var(--color-gray);
   outline: none;
+  background-color: white;
 }
-input[type="text"]:focus, textarea:focus, input[type="number"]:focus {
+input[type="text"]:focus, textarea:focus, input[type="number"]:focus, select:focus {
   border: 2px solid var(--color1);
 }
 label {

@@ -1,19 +1,11 @@
-<div id="<%= dom_id table %>">
-  <p>
-    <strong>Number:</strong>
-    <%= table.number %>
-  </p>
+<div id="<%= dom_id table %>" class="pb-3 border_top_gray">
+  <div class="">
 
-  <p>
-    <strong>Seats:</strong>
-    <%= table.seats %>
-  </p>
+    <%= turbo_frame_tag "#{dom_id(table)}_infor" do %>
+      <%= render "tables/table_infor", table: table %>
+    <% end %>
 
-  <% unless table.seating_option.nil? %>
-    <p>
-      <strong>Seating option:</strong>
-      <%= table.seating_option.name %>
-    </p>
-  <% end %>
+    <%= link_to "Edit this table", edit_table_path(table), data: { turbo_frame: "#{dom_id(table)}_infor" } %>
 
+  </div>
 </div>

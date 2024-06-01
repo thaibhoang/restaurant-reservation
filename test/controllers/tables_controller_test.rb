@@ -2,6 +2,9 @@ require "test_helper"
 
 class TablesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @business = businesses(:test_business)
+    sign_in @business
+    @seating_option = seating_options(:one)
     @table = tables(:one)
   end
 
@@ -17,7 +20,7 @@ class TablesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create table" do
     assert_difference("Table.count") do
-      post tables_url, params: { table: { business_id: @table.business_id, number: @table.number, seating_option: @table.seating_option, seats: @table.seats } }
+      post tables_url, params: { table: { number: 2, seating_option_id: @seating_option.id, seats: @table.seats } }
     end
 
     assert_redirected_to table_url(Table.last)
@@ -34,7 +37,7 @@ class TablesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update table" do
-    patch table_url(@table), params: { table: { business_id: @table.business_id, number: @table.number, seating_option: @table.seating_option, seats: @table.seats } }
+    patch table_url(@table), params: { table: { number: @table.number, seating_option_id: @seating_option.id, seats: @table.seats } }
     assert_redirected_to table_url(@table)
   end
 

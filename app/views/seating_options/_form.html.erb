@@ -17,6 +17,7 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Save", class: "main-button main-button--red" %>
+    <%= link_to "Cancel", new_seating_option_url(message: "cancel"), class: "mx-3" unless seating_option.persisted? %>
   </div>
 <% end %>

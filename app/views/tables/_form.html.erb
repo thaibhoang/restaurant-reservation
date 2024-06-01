@@ -13,21 +13,21 @@
 
   <div>
     <%= form.label :number, style: "display: block" %>
-    <%= form.number_field :number %>
+    <%= form.number_field :number, placeholder: "The number of the table" %>
   </div>
 
   <div>
     <%= form.label :seats, style: "display: block" %>
-    <%= form.number_field :seats %>
+    <%= form.number_field :seats, placeholder: "The number of seats" %>
   </div>
 
   <div>
-    <div>*Optional</div>
     <%= form.label :seating_option_id, style: "display: block" %>
-    <%= form.collection_select :seating_option_id, current_business.seating_options, :id, :name, { include_blank: "Select a seating option" } %>
+    <%= form.collection_select :seating_option_id, current_business.seating_options, :id, :name %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Save", class: "main-button main-button--red" %>
+    <%= link_to "Cancel", new_table_url(message: "cancel"), class: "mx-3" unless table.persisted? %>
   </div>
 <% end %>
