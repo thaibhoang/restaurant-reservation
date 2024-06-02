@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_01_093045) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_02_031223) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,7 +85,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_093045) do
     t.text "description"
     t.string "phone"
     t.string "address"
-    t.text "hours_of_operation"
     t.string "price"
     t.string "cuisine"
     t.string "dining_style"
@@ -100,6 +99,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_093045) do
     t.bigint "business_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "opening_time"
+    t.time "closing_time"
     t.index ["business_id"], name: "index_restaurant_profiles_on_business_id"
   end
 
