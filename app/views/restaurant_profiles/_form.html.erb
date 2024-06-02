@@ -42,6 +42,12 @@
     <%= form.time_select :closing_time, { prompt: { hour: "Hour", minute: "Minute" } } %>
   </div>
 
+  <div class="time">
+    <%= form.label "Dinning Duration *", style: "display: block" %>
+    <span class="color_gray">Default is 180 minutes (3 hours)</span>
+    <%= form.number_field :dining_duration, value: restaurant_profile.persisted? ? restaurant_profile.dining_duration : 180 %>
+  </div>
+
   <div>
     <%= form.label "Price *", style: "display: block" %>
     <%= form.text_field :price, placeholder: "E.g. $50 and over" %>

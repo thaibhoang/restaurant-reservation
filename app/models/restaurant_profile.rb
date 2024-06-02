@@ -7,6 +7,7 @@ class RestaurantProfile < ApplicationRecord
   validates :address, presence: true, length: { minimum: 3, maximum: 200 }
   validates :opening_time, presence: true
   validates :closing_time, presence: true
+  validates :dining_duration, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :price, presence: true, length: { minimum: 3, maximum: 200 }
   validates :cuisine, presence: true, length: { minimum: 3, maximum: 200 }
   validates :dining_style, length: { maximum: 200 }
