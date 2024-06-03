@@ -19,4 +19,12 @@ module ApplicationHelper
   def some_text_if_empty(resource)
     content_tag(:div, "Empty for now") if resource.empty?
   end
+
+  def format_time(time, format = "%M:%S")
+    time.blank? ? "" : time.to_s(format)
+  end
+
+  def format_date(date, format = :long)
+    time.blank? ? "" : date.to_s(format)
+  end
 end

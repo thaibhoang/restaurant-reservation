@@ -65,7 +65,7 @@ class RestaurantProfilesController < ApplicationController
   def restaurant_profile_params
     params.require(:restaurant_profile).permit(:name,
                                                :description, :phone,
-                                               :address, :hours_of_operation,
+                                               :address, :opening_hour, :closing_hour,
                                                :price, :cuisine, :dining_style,
                                                :dress_code, :parking_details,
                                                :payment_options, :executive_chef,
