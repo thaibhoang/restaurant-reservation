@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div data-controller="select">
+  <div data-controller="select" data-select-url-value="<%= available_reservations_path %>">
     <div>
       <%= form.label :business_id, style: "display: block" %>
       <%= form.number_field :business_id, { data: { select_target: "business" } } %>
