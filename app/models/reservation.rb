@@ -34,7 +34,6 @@ class Reservation < ApplicationRecord
 
   def self.filter_conflict_slots(reserved_slots, slots, duration)
     slots.reject do |slot|
-
       reserved_slots.any? do |reserved_slot|
         (reserved_slot >= slot && (reserved_slot - slot) < duration.minutes) || (reserved_slot <= slot && (slot - reserved_slot) < duration.minutes)
       end
@@ -42,7 +41,7 @@ class Reservation < ApplicationRecord
   end
 
   def self.find_reserved_slots_of_table(time, duration, table_id)
-    where(table_id: table_id).where('time > ? AND time < ?', (time - duration.minutes), (time + duration.minutes)).pluck(:time)
+    where(table_id: table_id).where('time >= ? AND time <= ?', (time - (duration + 30).minutes), (time + (duration + 30).minutes)).pluck(:time)
   end
 
   def self.find_time_slots(time)
