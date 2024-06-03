@@ -1,0 +1,17 @@
+
+[1mFrom:[0m /home/thaibhoang/repositories/rails/restaurant-reservation/app/models/reservation.rb:28 Reservation.find_availabale_tables:
+
+    [1;34m22[0m: [32mdef[0m [1;36mself[0m.[1;34mfind_availabale_tables[0m(table_ids, time, duration)
+    [1;34m23[0m:   time_slots = find_time_slots(time)
+    [1;34m24[0m:   result = []
+    [1;34m25[0m:   table_ids.each [32mdo[0m |table_id|
+    [1;34m26[0m:     reserved_slots = find_reserved_slots_of_table(time, duration, table_id)
+    [1;34m27[0m:     free_slots = filter_conflict_slots(reserved_slots, time_slots, duration)
+ => [1;34m28[0m:     binding.pry
+    [1;34m29[0m:     result += free_slots.map { |free_slot| [free_slot, table_id] } [32munless[0m free_slots.empty?
+    [1;34m30[0m:     time_slots -= free_slots
+    [1;34m31[0m:     [32mbreak[0m [32mif[0m time_slots.empty?
+    [1;34m32[0m:   [32mend[0m
+    [1;34m33[0m:   result
+    [1;34m34[0m: [32mend[0m
+

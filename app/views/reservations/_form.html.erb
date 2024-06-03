@@ -11,14 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :party_size, style: "display: block" %>
-    <%= form.select :party_size, party_size_choices, selected: 2 %>
-  </div>
+  <div data-controller="select">
+    <div>
+      <%= form.label :business_id, style: "display: block" %>
+      <%= form.number_field :business_id, { data: { select_target: "business" } } %>
+    </div>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date, id: 'reservation_date' %>
+    <div>
+      <%= form.label :party_size, style: "display: block" %>
+      <%= form.select :party_size, options = party_size_choices(), { selected: 2 }, { data: { select_target: "partySize" } } %>
+    </div>
+
+    <div class="time">
+      <%= form.label :date, style: "display: block" %>
+      <%= form.date_field :date, { value: Date.today, class: "date-picker", data: { action: "change->select#change", select_target: "date" } } %>
+    </div>
+
+    <div class="time">
+      <%= form.label :hour, style: "display: block" %>
+      <%= form.select :hour, options = time_choices(), {}, { data: { action: "change->select#change", select_target: "hour" } } %>
+    </div>
+
+    <div class="time">
+      <%= form.label :time, "Restaurant currently has available tables at", style: "display: block" %>
+      <%= form.select :time, [], {}, { data: { select_target: "time" } } %>
+    </div>
   </div>
 
   <div>

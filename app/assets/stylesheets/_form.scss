@@ -8,6 +8,10 @@ input[type="text"], textarea, input[type="number"], select {
   outline: none;
   background-color: white;
 }
+.time select {
+  display: inline-block;
+  width: auto;
+}
 input[type="text"]:focus, textarea:focus, input[type="number"]:focus, select:focus {
   border: 2px solid var(--color1);
 }

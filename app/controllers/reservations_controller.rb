@@ -57,14 +57,39 @@ class ReservationsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
-    end
+  def available
+    set_business
+    set_time
 
-    # Only allow a list of trusted parameters through.
-    def reservation_params
-      params.require(:reservation).permit(:party_size, :time, :user_id, :table_id)
+    table_ids = @business.tables.where("seats > ?", params[:party_size]).order(:seats).pluck(:id)
+    @target = params[:target]
+    duration = @business.restaurant_profile.dining_duration
+    @available_choies = Reservation.find_availabale_tables(table_ids, @time, duration)
+
+    respond_to do |format|
+      format.turbo_stream
     end
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  def set_business
+    @business = Business.find_by(id: params[:business_id])
+  end
+
+  def set_time
+    @time = Time.parse("#{params[:date]} #{params[:hour]}")
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reservation_params
+    params.require(:reservation).permit(:party_size, :time, :user_id, :table_id)
+  end
+
+  
 end

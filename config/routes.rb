@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :reservations do
+    collection do
+      get :available
+    end
+  end
   resources :tables do
     collection do
       post :bulk_create
