@@ -2,6 +2,7 @@
   <%= render @reservation %>
 
   <div>
+    <%= link_to "Cancel reservation", edit_reservation_path(@reservation) %> |
     <%= link_to "Back to reservations", reservations_path %>
   </div>
 <% end %>

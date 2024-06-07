@@ -1,13 +1,16 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_reservation, :owner_only, only: %i[ show edit update destroy last_step ]
+  before_action :set_reservation, only: %i[ show edit update last_step cancel ]
+  before_action :owner_only, only: %i[ last_step update ]
+  before_action :user_and_business, only: %i[show edit cancel]
   before_action :set_business, :set_time, only: [:available]
   before_action :get_variables_from_session, only: %i[create select_seating]
   before_action :valid_update, only: %i[update last_step]
 
+
   # GET /reservations or /reservations.json
   def index
-    @reservations = current_user.reservations
+    @reservations = (current_user.reservations.order(id: :desc) if user_signed_in?) || (business.reservations.order(id: :desc) if business_signed_in?)
   end
 
   # GET /reservations/1 or /reservations/1.json
@@ -40,6 +43,7 @@ class ReservationsController < ApplicationController
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
+    @reservation.status = "booked"
     respond_to do |format|
       if @reservation.update(confirm_reservation_params)
         session[:reservation] = {}
@@ -52,14 +56,26 @@ class ReservationsController < ApplicationController
     end
   end
 
-  # DELETE /reservations/1 or /reservations/1.json
-  def destroy
-    (redirect_to root_path && return) unless @reservation.status == "holded"
-    @reservation.destroy!
+  def cancel
+    if @reservation.cannot_be_canceled?
+      redirect_to @reservation, alert: "Cancelation not allowed within 60 minutes of the reservation time."
+      return
+    end
+
+    @reservation.status = "canceled"
+    log = if user_signed_in? && @reservation.user == current_user
+            "User canceled with reason: #{params[:reservation][:reason_for_cancel]}"
+          elsif business_signed_in? && @reservation.table.business == current_business
+            "Business canceled with reason: #{params[:reservation][:reason_for_cancel]}"
+          end
+    @reservation.cancel_log = log
 
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: "Reservation was successfully destroyed." }
-      format.json { head :no_content }
+      if @reservation.save
+        format.html { redirect_to @reservation, notice: "Cancel successfully" }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -91,7 +107,7 @@ class ReservationsController < ApplicationController
 
   def valid_update
     if @reservation.nil? || @reservation.status != "holded" || Time.current - @reservation.created_at > 5.minutes
-      redirect_to root_path, alert: "Reservation expired or not found"
+      redirect_to root_path, alert: "Reservation expired or not found or unauthorized"
     end
   end
 
@@ -127,7 +143,11 @@ class ReservationsController < ApplicationController
 
   # This is for changing the reservation status from holded to booked
   def confirm_reservation_params
-    params.require(:reservation).permit(:status, :occation, :special_request)
+    params.require(:reservation).permit(:occation, :special_request)
   end
-  
+
+  def user_and_business
+    redirect_to root_path unless (user_signed_in? && @reservation.user == current_user) || 
+                                 (business_signed_in? && @reservation.table.business == current_business)
+  end 
 end

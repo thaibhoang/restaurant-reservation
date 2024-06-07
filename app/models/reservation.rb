@@ -82,6 +82,10 @@ class Reservation < ApplicationRecord
     time_slots
   end
 
+  def cannot_be_canceled?
+    time < Time.current + 60.minutes
+  end
+
   private
 
   def time_divisible_by_15_minutes

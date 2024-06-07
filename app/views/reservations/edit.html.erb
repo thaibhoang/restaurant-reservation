@@ -1,10 +1,32 @@
-<h1>Editing reservation</h1>
+<%= render "shared/small_container" do %>
+  <h2><strong>Cancel form</strong></h2>
 
-<%= render "form", reservation: @reservation %>
+  <%= form_with(model: @reservation, url: cancel_reservation_url(@reservation)) do |form| %>
+    <% if @reservation.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-<br>
+        <ul>
+          <% @reservation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<div>
-  <%= link_to "Show this reservation", @reservation %> |
-  <%= link_to "Back to reservations", reservations_path %>
-</div>
+    <div>
+      <%= form.label :reason_for_cancel, style: "display: block" %>
+      <%= form.text_field :reason_for_cancel %>
+    </div>
+
+    <div>
+      <%= form.submit "Cancel Reservation", class: "main-button main-button--red main-button--super main-button--rectangle" %>
+    </div>
+  <% end %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to reservation", @reservation %>
+  </div>
+<% end %>

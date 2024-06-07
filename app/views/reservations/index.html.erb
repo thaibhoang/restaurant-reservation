@@ -1,14 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/user_content_container" do %>
 
-<h1>Reservations</h1>
+  <h1>Reservations</h1>
 
-<div id="reservations">
-  <% @reservations.each do |reservation| %>
-    <%= render reservation %>
-    <p>
-      <%= link_to "Show this reservation", reservation %>
-    </p>
-  <% end %>
-</div>
+  <div id="reservations">
+    <% @reservations.each do |reservation| %>
+      <div class="pb-3 mb-3 border_bottom_gray">
+        <%= render reservation %>
+        <p>
+          <%= link_to "Show this reservation", reservation %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to "New reservation", new_reservation_path %>
+  <%= link_to "New reservation", new_reservation_path %>
+<% end %>

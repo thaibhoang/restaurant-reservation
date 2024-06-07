@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :reservations do
+  resources :reservations, except: :destroy do
     collection do
       get :available
       get :select_seating
       get :last_step
+    end
+    member do
+      patch :cancel
     end
   end
   resources :tables do
