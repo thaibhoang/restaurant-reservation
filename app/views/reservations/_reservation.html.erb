@@ -1,5 +1,15 @@
 <div id="<%= dom_id reservation %>">
   <p>
+    <strong>Restaurant:</strong>
+    <%= RestaurantProfile.find_by(business_id: reservation.table.business_id).name %>
+  </p>
+
+  <p>
+    <strong>Table number:</strong>
+    <%= reservation.table.number %>
+  </p>
+
+  <p>
     <strong>Party size:</strong>
     <%= reservation.party_size %>
   </p>
@@ -10,13 +20,23 @@
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= reservation.user_id %>
+    <strong>Guest:</strong>
+    <%= current_user.email %>
   </p>
 
   <p>
-    <strong>Table:</strong>
-    <%= reservation.table_id %>
+    <strong>Occation:</strong>
+    <%= reservation.occation %>
+  </p>
+  
+  <p>
+    <strong>Sepcial request:</strong>
+    <%= reservation.special_request %>
+  </p>
+
+  <p>
+    <strong>Reservation status:</strong>
+    <%= reservation.status %>
   </p>
 
 </div>

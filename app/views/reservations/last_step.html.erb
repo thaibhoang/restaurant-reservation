@@ -1,0 +1,26 @@
+<%= render "shared/small_container" do %>
+
+  <%= render "reservation_infor", business_name: @business_name, time: @reservation.time, party_size: @reservation.party_size %>
+
+  <div class="p-3 my-3 countdown">
+    We’re holding this table for you for 
+    <strong id="countdown" data-created-at="<%= @reservation.created_at %>"></strong>
+  </div>
+
+
+  <div id="reservation_id" data-reservation-id=<%= @reservation.id %> class="my-3">
+    <strong>Reservation details</strong>
+  </div>
+
+
+  <%= render "create_holded_reservation", reservation: @reservation, 
+                                          token: @token, 
+                                          party_size: @reservation.party_size, 
+                                          time: @reservation.time, 
+                                          table_id: @reservation.table_id %>
+
+
+  <% content_for :custom_js do %>
+    <%= javascript_importmap_tags "custom/timer" %>
+  <% end %>
+<% end %>

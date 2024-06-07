@@ -1,0 +1,22 @@
+<%= render "shared/small_container" do %>
+  <%= render "reservation_infor", business_name: @business_name, time: @time, party_size: @party_size %>
+
+  <div>
+    <h2 class="fw-bold">Seating options</h2>
+    <br>
+    <div>  
+      <%= render "shared/errors_message", resource: @reservation %>
+      <% @seating_options.to_a.each do |seating_option_id, table_id| %>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="fw-bold"><%= SeatingOption.find(seating_option_id).name%></div>
+
+          <%= render "create_holded_reservation", reservation: @reservation, 
+                                                  token: @token, 
+                                                  party_size: @party_size, 
+                                                  time: @time, 
+                                                  table_id: table_id %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end%>

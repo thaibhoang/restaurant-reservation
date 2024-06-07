@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :reservations do
     collection do
       get :available
+      get :select_seating
+      get :last_step
     end
   end
   resources :tables do

@@ -1,9 +1,12 @@
-<h1>Make a reservation</h1>
+<%= render "shared/small_container" do %>
 
-<%= render "form", reservation: @reservation %>
+  <h1>Make a reservation</h1>
 
-<br>
+  <%= render "form", reservation: @reservation %>
 
-<div>
-  <%= link_to "Back to reservations", reservations_path %>
-</div>
+  <br>
+
+  <div>
+    <%= link_to "Back to reservations", reservations_path %>
+  </div>
+<% end %>

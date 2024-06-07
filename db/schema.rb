@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_02_064728) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_115756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_064728) do
   create_table "reservations", force: :cascade do |t|
     t.integer "party_size"
     t.datetime "time"
-    t.string "status", default: "booked"
+    t.string "status", default: "holded"
     t.string "cancel_log"
     t.integer "occation"
     t.string "special_request"
@@ -149,6 +149,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_064728) do
     t.index ["business_id"], name: "index_tables_on_business_id"
     t.index ["number", "business_id"], name: "index_tables_on_number_and_business_id", unique: true
     t.index ["seating_option_id"], name: "index_tables_on_seating_option_id"
+    t.index ["seats"], name: "index_tables_on_seats"
   end
 
   create_table "users", force: :cascade do |t|

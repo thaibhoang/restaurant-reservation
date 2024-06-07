@@ -1,4 +1,9 @@
 <%= turbo_stream.update @target do %>
-  <%= options_for_select @available_choies %>
+  <div><strong>Restaurant available times</strong></div>
+  <div>
+    <% create_link_with_available_choices(@available_choices, @party_size).each do |choice| %>
+      <%= choice %>
+    <% end %>
+  </div>
 <% end %>
 

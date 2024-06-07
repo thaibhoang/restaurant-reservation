@@ -1,0 +1,16 @@
+<h1 class="fs-1 fw-bolder"><%= business_name %></h1>
+
+<div class="d-flex gap-5 mb-4 pb-3 border_bottom_gray">
+  <div class="fs-3">
+    <i class="fa-regular fa-calendar"></i>
+    <%= time.strftime("%a, %b %-d") %>
+  </div>
+  <div class="fs-3">
+    <i class="fa-regular fa-clock"></i>
+    <%= time.strftime("%H:%M %p") %>
+  </div>
+  <div class="fs-3">
+    <i class="fa-regular fa-user"></i>
+    <%= pluralize(party_size, "person") %>
+  </div>
+</div>

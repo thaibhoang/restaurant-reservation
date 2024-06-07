@@ -12,33 +12,34 @@
   <% end %>
 
   <div data-controller="select" data-select-url-value="<%= available_reservations_path %>">
-    <div>
-      <%= form.label :business_id, style: "display: block" %>
-      <%= form.number_field :business_id, { data: { select_target: "business" } } %>
-    </div>
+    <% if local_assigns[:business_id] %>
+      <%= form.hidden_field :business_id, value: business_id %>
+    <% else %>
+      <div>
+        <%= form.label :business_id, style: "display: block" %>
+        <%= form.number_field :business_id, { data: { select_target: "business", action: "change->select#change" } } %>
+      </div>
+    <% end %>
 
     <div>
       <%= form.label :party_size, style: "display: block" %>
       <%= form.select :party_size, options = party_size_choices(), { selected: 2 }, { data: { select_target: "partySize" } } %>
     </div>
 
-    <div class="time">
-      <%= form.label :date, style: "display: block" %>
-      <%= form.date_field :date, { value: Date.today, class: "date-picker", data: { action: "change->select#change", select_target: "date" } } %>
+    <div class="two_columns mb-3">
+      <div class="time">
+        <%= form.label :date, style: "display: block" %>
+        <%= form.date_field :date, { value: Date.today, class: "date-picker", data: { action: "change->select#change", select_target: "date" } } %>
+      </div>
+      <div class="time">
+        <%= form.label :hour, style: "display: block" %>
+        <%= form.select :hour, options = time_choices(), { prompt: "Select hour" }, { data: { action: "change->select#change", select_target: "hour", class: "d-block" } } %>
+      </div>
     </div>
 
-    <div class="time">
-      <%= form.label :hour, style: "display: block" %>
-      <%= form.select :hour, options = time_choices(), {}, { data: { action: "change->select#change", select_target: "hour" } } %>
+    <div class="time" data-select-target="time" id="reservation_time">
     </div>
 
-    <div class="time">
-      <%= form.label :time, "Restaurant currently has available tables at", style: "display: block" %>
-      <%= form.select :time, [], {}, { data: { select_target: "time" } } %>
-    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

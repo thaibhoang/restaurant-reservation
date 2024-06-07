@@ -18,6 +18,7 @@
 @import "admin_nav";
 @import "form";
 @import "flex_buttons";
+@import "font-awesome";
 
 * {
   --color1: #da3743;
@@ -57,6 +58,10 @@ h2, .h2 {
 .main-content {
   margin: auto;
   width: Min(100%, 1000px);
+}
+.small-content {
+  margin: auto;
+  width: Min(100%, 700px);
 }
 .border_bottom_gray {
   border-bottom: 0.0625rem solid var(--color-gray-light);

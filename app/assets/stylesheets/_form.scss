@@ -1,4 +1,4 @@
-input[type="text"], textarea, input[type="number"], select {
+input[type="text"], textarea, input[type="number"], input[type="date"], select {
   display: block;
   width: 100%;
   margin-bottom: 0.5rem;
@@ -8,10 +8,6 @@ input[type="text"], textarea, input[type="number"], select {
   outline: none;
   background-color: white;
 }
-.time select {
-  display: inline-block;
-  width: auto;
-}
 input[type="text"]:focus, textarea:focus, input[type="number"]:focus, select:focus {
   border: 2px solid var(--color1);
 }
@@ -19,6 +15,7 @@ label {
   padding-top: 1rem;
 }
 .main-button {
+  display: inline-block;
   line-height: 20px;
   color: white;
   padding: 0.5rem 1.5rem;
@@ -36,6 +33,9 @@ label {
 .main-button--blue {
   background-color: var(--color2);
 }
+.main-button--gray {
+  background-color: var(--color-gray);
+}
 .main-button--red-light {
   background-color: var(--color-red-light);
 }
@@ -43,4 +43,13 @@ label {
   opacity: 1;
   transition: all 0.3 ease-in-out;
   color: white;
+}
+.main-button--rectangle {
+  border-radius: 0.5rem;
+}
+.main-button--super {
+  display: block;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

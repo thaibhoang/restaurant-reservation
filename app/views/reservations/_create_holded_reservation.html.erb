@@ -1,0 +1,22 @@
+<%= form_with(model: reservation) do |form| %>
+  <% if reservation.new_record? %>
+    <%= hidden_field_tag :token, token %>
+    <%= form.hidden_field :party_size, value: party_size %>
+    <%= form.hidden_field :time, value: time %>
+    <%= form.hidden_field :table_id, value: table_id %>
+
+  <% else %>
+    <div class="d-flex flex-column gap-4 flex-lg-row">
+      <%= form.hidden_field :status, value: "booked" %>
+      <%= form.select :occation, Reservation.occations.map { |k, v| [k.capitalize, k] }, { prompt: "Select an occation (optional)" } %>
+      <%= form.text_field :special_request, placeholder: "Add a special request (optional)" %>
+  </div>
+  <% end %>
+
+  <div>
+    <%= form.submit((reservation.persisted? ? "Complete Reservation" : "Select"), 
+          id: "save-button", 
+          data: { turbo: false },
+          class: "main-button main-button--red main-button--rectangle main-button--super" )%>
+  </div>
+<% end %>

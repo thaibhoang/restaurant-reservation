@@ -2,55 +2,83 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :table
 
-  STATUSES = %w[booked canceled]
+  STATUSES = %w[holded booked canceled]
   enum occation: {
-    Birthday: 0,
-    Anniversary: 1,
-    Date_night: 2,
-    Business_Meal: 3,
-    Celebration: 4
+    birthday: 0,
+    anniversary: 1,
+    date_night: 2,
+    business_Meal: 3,
+    celebration: 4
   }
 
   validates :status, inclusion: { in: STATUSES }
   validate :time_divisible_by_15_minutes
   validates :time, :party_size, presence: true
   validates :party_size, numericality: { greater_than: 0, only_integer: true }
+  validate :not_conflict
 
 
   SEARCH_RADIUS = 30
 
-  def self.find_availabale_tables(table_ids, time, duration)
+  def self.find_availabale_tables(business_id, party_size, time, duration, seating_option_ids)
     time_slots = find_time_slots(time)
-    result = []
-    table_ids.each do |table_id|
-      reserved_slots = find_reserved_slots_of_table(time, duration, table_id)
+    time_slots_with_seating_options = time_slots.product(seating_option_ids)
+    available_tables = {}
+
+    tables = Table.fetch_available_table(business_id, party_size)
+    table_ids = tables.pluck(:id)
+    all_reserved_slots = find_reserved_slots(time, duration, table_ids)
+
+    tables.each do |table|
+      reserved_slots = all_reserved_slots[table.id]
       free_slots = filter_conflict_slots(reserved_slots, time_slots, duration)
-      result += free_slots.map { |free_slot| [free_slot, table_id] } unless free_slots.empty?
-      time_slots -= free_slots
-      break if time_slots.empty?
+      unless free_slots.empty?
+        free_slots.each do |free_slot|
+          seating_option_id = table.seating_option.id
+          available_tables[free_slot] ||= {}  # Initialize if not already
+          available_tables[free_slot][seating_option_id] ||= table.id
+          time_slots_with_seating_options -= [free_slot, seating_option_id]
+        end
+        break if time_slots_with_seating_options.empty?
+      end
     end
-    result.sort_by { |time_slot, id| time_slot }
+    
+    available_tables
   end
 
   def self.filter_conflict_slots(reserved_slots, slots, duration)
     slots.reject do |slot|
       reserved_slots.any? do |reserved_slot|
-        (reserved_slot >= slot && (reserved_slot - slot) < duration.minutes) || (reserved_slot <= slot && (slot - reserved_slot) < duration.minutes)
+        conflict?(reserved_slot, slot, duration)
       end
     end
   end
 
-  def self.find_reserved_slots_of_table(time, duration, table_id)
-    where(table_id: table_id).where('time >= ? AND time <= ?', (time - (duration + 30).minutes), (time + (duration + 30).minutes)).pluck(:time)
+  def self.conflict?(reserved_slot, slot, duration)
+    (reserved_slot >= slot && (reserved_slot - slot) < duration.minutes) ||
+      (reserved_slot <= slot && (slot - reserved_slot) < duration.minutes)
+  end
+
+  def self.find_reserved_slots(time, duration, table_ids)
+    reservations = where(table_id: table_ids).where('time >= ? AND time <= ?', (time - (duration + 30).minutes), (time + (duration + 30).minutes)).pluck(:table_id, :time)
+
+    # turn the array of arrays to a hash
+    result = Hash.new { |hash, key| hash[key] = [] }
+    reservations.each do |table_id, time|
+      result[table_id] << time
+    end
+    result
   end
 
   def self.find_time_slots(time)
     time_slots = []
-    current_time_slot = time - SEARCH_RADIUS.minutes
-    while current_time_slot <= time + SEARCH_RADIUS.minutes
-      time_slots << current_time_slot
-      current_time_slot += 15.minutes
+    current_time = time - SEARCH_RADIUS.minutes
+
+    while current_time <= time + SEARCH_RADIUS.minutes
+      time_slots << current_time
+      current_time += 15.minutes
     end
+
     time_slots
   end
 
@@ -59,6 +87,19 @@ class Reservation < ApplicationRecord
   def time_divisible_by_15_minutes
     if time.present? && (time.min % 15 != 0)
       errors.add(:time, 'must be divisible by 15 minutes')
+    end
+  end
+
+  def not_conflict
+    return unless self.new_record?
+
+    # Lock the table to prevent other transactions from modifying it
+    table = Table.lock.find(table_id)
+    duration = table.business.restaurant_profile.dining_duration.to_i
+    reservations = Reservation.where(table_id: table_id).where('time > ? AND time < ?', time - duration.minutes, time + duration.minutes )
+    unless reservations.blank?
+
+      errors.add(:base, 'It seems like someone is holding this table, go back to see other options')
     end
   end
 end

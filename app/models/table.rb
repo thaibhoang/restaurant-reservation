@@ -5,6 +5,13 @@ class Table < ApplicationRecord
   validates :number, presence: true, uniqueness: { scope: :business_id }, numericality: { greater_than: 0 }
   validates :seats, presence: true, numericality: { greater_than: 0, only_integer: true }
 
+  def self.fetch_available_table(business_id, party_size)
+    where(business_id: business_id)
+      .where("seats > ?", party_size).includes(:seating_option)
+      .order(:id)
+      .order(:seats)
+  end
+
   def self.validate_bulk_base_info(number_of_tables, starting_number, seats)
     positive_int?(number_of_tables) && positive_int?(starting_number) && positive_int?(seats)
   end

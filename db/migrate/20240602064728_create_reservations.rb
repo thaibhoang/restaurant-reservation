@@ -3,7 +3,7 @@ class CreateReservations < ActiveRecord::Migration[7.1]
     create_table :reservations do |t|
       t.integer :party_size
       t.datetime :time
-      t.string :status, default: "booked"
+      t.string :status, default: "holded"
       t.string :cancel_log
       t.integer :occation
       t.string :special_request
